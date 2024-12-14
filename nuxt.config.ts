@@ -10,6 +10,19 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/icon",
   ],
+  auth: {
+    originEnvKey: "AUTH_ORIGIN",
+    baseURL: process.env.BASE_API_URL,
+    provider: {
+      type: "local",
+      pages: {
+        login: "/login",
+      },
+      endpoints: {
+        signIn: { path: "user/login", method: "post" },
+      },
+    },
+  },
   primevue: {
     options: {
       theme: {
