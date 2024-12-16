@@ -12,16 +12,18 @@
   "dependencies": {
     "@nuxt/icon": "^1.10.1",
     "@nuxt/image": "^1.8.1",
-    "@nuxtjs/tailwindcss": "^6.12.2",
+    "@primevue/forms": "^4.2.5",
     "@primevue/themes": "^4.2.5",
     "@sidebase/nuxt-auth": "^0.10.0-rc.2",
     "next-auth": "~4.21.1",
     "nuxt": "^3.14.1592",
     "primevue": "^4.2.5",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.2",
     "@primevue/nuxt-module": "^4.2.5"
   }
 }

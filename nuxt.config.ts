@@ -10,16 +10,21 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/icon",
   ],
+  experimental: {
+    crossOriginPrefetch: true,
+  },
   auth: {
-    originEnvKey: "AUTH_ORIGIN",
-    baseURL: process.env.BASE_API_URL,
+    baseURL: "http://localhost:8080/",
+    disableServerSideAuth: false,
     provider: {
       type: "local",
       pages: {
         login: "/login",
       },
       endpoints: {
-        signIn: { path: "user/login", method: "post" },
+        signIn: { path: "users/login", method: "post" },
+        signOut: { path: "user/logout", method: "post" },
+        signUp: { path: "user/register", method: "post" },
       },
     },
   },
