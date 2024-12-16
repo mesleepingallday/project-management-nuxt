@@ -1,7 +1,12 @@
 import { defineStore } from "pinia";
 
+interface AuthState {
+  username: string;
+  password: string;
+}
+
 export const useAuthStore = defineStore("auth", {
-  state: () => ({
+  state: (): AuthState => ({
     username: "",
     password: "",
   }),
@@ -14,12 +19,12 @@ export const useAuthStore = defineStore("auth", {
       this.password = password;
 
       // Store Base64-encoded values in localStorage
-      localStorage.setItem("encodedUsername", encodedUsername);
-      localStorage.setItem("encodedPassword", encodedPassword);
+      localStorage.setItem("username", encodedUsername);
+      localStorage.setItem("password", encodedPassword);
     },
     loadFromLocalStorage() {
-      const encodedUsername = localStorage.getItem("encodedUsername") ?? "";
-      const encodedPassword = localStorage.getItem("encodedPassword") ?? "";
+      const encodedUsername = localStorage.getItem("username") ?? "";
+      const encodedPassword = localStorage.getItem("password") ?? "";
 
       if (encodedUsername && encodedPassword) {
         this.username = atob(encodedUsername);

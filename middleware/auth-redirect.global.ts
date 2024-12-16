@@ -1,8 +1,8 @@
 // middleware/auth-redirect.global.ts
 export default defineNuxtRouteMiddleware((to) => {
   if (typeof window !== "undefined") {
-    const username = localStorage.getItem("encodedUsername");
-    const password = localStorage.getItem("encodedPassword");
+    const username = localStorage.getItem("username");
+    const password = localStorage.getItem("password");
 
     if (
       username &&
