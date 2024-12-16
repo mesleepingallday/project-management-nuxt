@@ -3,7 +3,6 @@
     <Toast />
     <div class="card">
       <div class="flex flex-col gap-4 w-full p-4 sm:p-6 lg:p-10">
-        <UiLogo class="w-32 sm:w-40" />
         <p class="font-bold text-2xl sm:text-3xl py-1">Sign in</p>
         <p class="font-semibold text-lg sm:text-xl py-1">
           Nice to see you again
@@ -90,6 +89,7 @@ definePageMeta({
 
 import { zodResolver } from "@primevue/forms/resolvers/zod";
 import { z } from "zod";
+const authStore = useAuthStore();
 const rememberMe = ref(false);
 const toast = useToast();
 const initialValues = ref({
@@ -118,7 +118,7 @@ const onLogin = async (e: any) => {
         },
       });
       if (data.error.value) {
-        throw new Error(data.error.value.message);
+        throw new Error(data.error.value);
       }
       toast.add({
         severity: "success",
@@ -126,13 +126,30 @@ const onLogin = async (e: any) => {
         detail: "Redirecting to your dashboard...",
         life: 3000,
       });
+      setTimeout(() => {
+        console.log("redirecting...");
+        const encodedUsername = encodeBase64(username);
+        const encodedPassword = encodeBase64(password);
+        authStore.login(encodedUsername, encodedPassword);
+
+        navigateTo("/");
+      }, 2000);
     } catch (error) {
-      toast.add({
-        severity: "error",
-        summary: "Fail to login in",
-        detail: "Username or password is incorrect.",
-        life: 3000,
-      });
+      if (error.message.includes("500")) {
+        toast.add({
+          severity: "error",
+          summary: "Fail to login in",
+          detail: "Server error. Please try again later.",
+          life: 3000,
+        });
+      } else {
+        toast.add({
+          severity: "error",
+          summary: "Fail to login in",
+          detail: "Username or password is incorrect.",
+          life: 3000,
+        });
+      }
     }
   }
 };
