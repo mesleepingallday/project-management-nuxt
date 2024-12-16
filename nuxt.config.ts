@@ -6,28 +6,12 @@ export default defineNuxtConfig({
   modules: [
     "@primevue/nuxt-module",
     "@nuxtjs/tailwindcss",
-    "@sidebase/nuxt-auth",
     "@nuxt/image",
     "@nuxt/icon",
     "@pinia/nuxt",
   ],
   experimental: {
     crossOriginPrefetch: true,
-  },
-  auth: {
-    baseURL: "http://localhost:8080/",
-    disableServerSideAuth: false,
-    provider: {
-      type: "local",
-      pages: {
-        login: "/login",
-      },
-      endpoints: {
-        signIn: { path: "users/login", method: "post" },
-        signOut: { path: "user/logout", method: "post" },
-        signUp: { path: "user/register", method: "post" },
-      },
-    },
   },
   primevue: {
     options: {
