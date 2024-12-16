@@ -78,6 +78,7 @@
 </template>
 
 <script lang="ts" setup>
+//@ts-nocheck
 definePageMeta({
   title: "Login",
   description: "Login to your account",

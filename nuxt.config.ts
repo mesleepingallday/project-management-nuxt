@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@sidebase/nuxt-auth",
     "@nuxt/image",
     "@nuxt/icon",
+    "@pinia/nuxt",
   ],
   experimental: {
     crossOriginPrefetch: true,
